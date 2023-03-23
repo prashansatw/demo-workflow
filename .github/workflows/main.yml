@@ -1,5 +1,7 @@
 name: build and deploy to test
-on: [push]
+on:
+  workflow_dispatch:
+  push:
 env:
   URL: prashansatw.github.io/demo-workflow-test/
 
