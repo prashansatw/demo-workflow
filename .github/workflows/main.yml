@@ -37,6 +37,7 @@ jobs:
         with:
           repository: prashansatw/demo-workflow-test
           path: "deploy"
+          token: ${{ secrets.PAT }}
 
       - name: Push files to target
         run: |
