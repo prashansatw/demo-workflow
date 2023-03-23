@@ -42,8 +42,6 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
 
       - name: Push files to target
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
         run: |
           cp -r build/* deploy
           cd deploy
