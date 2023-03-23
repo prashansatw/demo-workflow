@@ -10,6 +10,8 @@ jobs:
       name: test
       url: https://${{env.URL}}
     steps:
+      - run: echo ${{ secrets.DEV_ENV_SECRET }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
