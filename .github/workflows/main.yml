@@ -1,0 +1,48 @@
+name: build and deploy to test
+on: [push]
+env:
+  URL: prashansatw.github.io/demo-workflow-test/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: test
+      url: https://${{env.URL}}
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          path: "build"
+
+      - name: Build
+        run: |
+          cd build
+          npm i
+          npm run build
+          cd ..
+
+      - name: Checkout Dev Target
+        uses: actions/checkout@v3
+        with:
+          repository: prashansatw/demo-workflow-test
+          path: "deploy"
+          token: ${{secrets.PAT}}
+
+      - name: Push files to target
+        run: |
+          cp -r build/static/* deploy
+          cd deploy
+          touch .nojekyll
+          echo ${{ env.URL }} > CNAME
+          git add .
+          git commit -m $GITHUB_SHA
+          git push
