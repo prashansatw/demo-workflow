@@ -39,6 +39,7 @@ jobs:
         with:
           repository: prashansatw/demo-workflow-test
           path: "deploy"
+          token: ${{github_token}}
 
       - name: Push files to target
         run: |
