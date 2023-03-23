@@ -23,7 +23,7 @@ jobs:
           git config --global user.email github-actions@github.com
 
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           path: "build"
 
@@ -35,7 +35,7 @@ jobs:
           cd ..
 
       - name: Checkout Dev Target
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           repository: prashansatw/demo-workflow-test
           path: "deploy"
