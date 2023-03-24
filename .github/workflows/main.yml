@@ -47,10 +47,10 @@ jobs:
           cp -r build/* deploy
           cd deploy
           cp build/index.html .
+          cp build/static .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
           git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
-          npm run deploy
