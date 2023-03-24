@@ -15,7 +15,7 @@ jobs:
       - run: echo ${{ secrets.DEV_ENV_SECRET }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3 
+        uses: actions/setup-node@v3
 
       - name: Set GitHub Actions as Commit Author
         run: |
@@ -43,8 +43,9 @@ jobs:
 
       - name: Push files to target
         run: |
-          cp -r build/static deploy
+          cp -r build deploy
           cd deploy
+          cp build/index.html .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
           git remote set-url origin https://${GITHUB_TOKEN} github.com/prashansatw/demo-workflow-test.git
