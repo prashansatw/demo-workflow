@@ -48,7 +48,7 @@ jobs:
           cp build/index.html .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
-          git remote set-url origin https://${GITHUB_TOKEN} github.com/prashansatw/demo-workflow-test.git
+          git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
