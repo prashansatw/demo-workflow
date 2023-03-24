@@ -53,3 +53,4 @@ jobs:
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
+          npm run deploy
