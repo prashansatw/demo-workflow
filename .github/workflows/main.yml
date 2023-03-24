@@ -15,7 +15,7 @@ jobs:
       - run: echo ${{ secrets.DEV_ENV_SECRET }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3 
 
       - name: Set GitHub Actions as Commit Author
         run: |
