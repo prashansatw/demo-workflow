@@ -33,6 +33,9 @@ jobs:
           npm i
           npm run build
           cd ..
+      
+      - uses: jfrog/setup-jfrog-cli@v3
+      - run: jf --version
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
