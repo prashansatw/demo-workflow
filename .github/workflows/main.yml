@@ -47,5 +47,6 @@ jobs:
           cd deploy
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
+          git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
