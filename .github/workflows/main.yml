@@ -32,7 +32,6 @@ jobs:
           cd build
           npm i
           npm run build
-          npm run deploy
           cd ..
 
       - name: Checkout Dev Target
@@ -44,7 +43,7 @@ jobs:
 
       - name: Push files to target
         run: |
-          cp -r build/* deploy
+          cp -r build/static deploy
           cd deploy
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
