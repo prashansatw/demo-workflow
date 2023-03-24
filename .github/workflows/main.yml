@@ -43,6 +43,7 @@ jobs:
 
       - name: Push files to target
         run: |
+          git rm -rf deploy/*
           cp -r build/* deploy
           cd deploy
           cp build/index.html .
