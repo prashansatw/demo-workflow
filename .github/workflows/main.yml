@@ -35,7 +35,7 @@ jobs:
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
       - run: |
-          echo ${{env.JF_URL}}
+          echo ${{steps.setup_JFrog_CLI.env.JF_URL}}
           jf rt ping --url ${{steps.setup_JFrog_CLI.env.JF_URL}}
 
       - name: Build
