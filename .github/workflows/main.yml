@@ -27,12 +27,29 @@ jobs:
         with:
           path: "build"
 
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v3
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+      - run: jf rt ping
+
       - name: Build
         run: |
           cd build
           npm i
           npm run build
           cd ..
+
+      - name: Run JFrog CLI
+        run: |
+          # Collect environment variables for the build
+          jf rt bce
+          # Collect VCS details from git and add them to the build
+          jf rt bag
+          # Publish build info
+          jf rt bp
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
