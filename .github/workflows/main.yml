@@ -33,7 +33,7 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-      - run: jf rt ping --URL ${{env.JF_URL}}
+      - run: jf rt ping --url ${{env.JF_URL}}
 
       - name: Build
         run: |
@@ -41,9 +41,6 @@ jobs:
           npm i
           npm run build
           cd ..
-
-      - uses: jfrog/setup-jfrog-cli@v3
-      - run: jf --version
 
       - name: Run JFrog CLI
         run: |
