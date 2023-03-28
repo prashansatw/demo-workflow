@@ -33,7 +33,9 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-      - run: jf rt ping --url ${{env.JF_URL}}
+      - run: |
+          echo ${{env.JF_URL}}
+          jf rt ping --url ${{env.JF_URL}}
 
       - name: Build
         run: |
