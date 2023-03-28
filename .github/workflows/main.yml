@@ -34,7 +34,7 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
 
       - run: |
-          echo ${{steps.setup_JFrog_CLI.env.JF_URL}}
+          echo "output ${{steps.setup_JFrog_CLI.env.JF_URL}}"
           jf rt ping --url ${{steps.setup_JFrog_CLI.env.JF_URL}}
 
       - name: Build
