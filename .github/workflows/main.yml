@@ -32,6 +32,8 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v3
         env:
           JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{secrets.JF_USERNAME}}
+          JF_PASSWORD: ${{secrets.JF_PASSWORD}}
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
