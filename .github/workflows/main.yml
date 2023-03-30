@@ -36,7 +36,6 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          lsof -i :8081
           jfrog rt ping --url=http://localhost:8081/artifactory
 
       - name: Build
