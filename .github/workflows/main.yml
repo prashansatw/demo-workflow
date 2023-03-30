@@ -36,7 +36,7 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt ping --retries=100
+          jf rt ping
 
       - name: Build
         run: |
