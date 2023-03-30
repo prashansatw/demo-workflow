@@ -34,10 +34,10 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{secrets.JF_ACCESS_TOKEN}}
 
-      - run: |
-          echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt curl http://localhost:8081
-          jf rt ping --url=http://localhost:8081/artifactory
+      # - run: |
+      #     echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
+      #     jf rt curl http://localhost:8081
+      #     jf rt ping --url=http://localhost:8081/artifactory
 
       - name: Build
         run: |
@@ -46,14 +46,16 @@ jobs:
           npm run build
           cd ..
 
-      - name: Run JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jf rt bce
-          # Collect VCS details from git and add them to the build
-          jf rt bag
-          # Publish build info
-          jf rt bp
+      # - name: Run JFrog CLI
+      #   run: |
+      #     # Collect environment variables for the build
+      #     jf rt bce
+      #     # Collect VCS details from git and add them to the build
+      #     jf rt bag
+      #     # Publish build info
+      #     jf rt bp
+
+      -run: jf rt  u "build/build/*" demorepo --retries=100
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
