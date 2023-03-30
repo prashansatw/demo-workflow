@@ -36,7 +36,7 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt curl api/system/version 
+          jf rt curl http://localhost:8081
           jf rt ping --url=http://localhost:8081/artifactory
 
       - name: Build
