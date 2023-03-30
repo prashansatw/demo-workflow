@@ -55,7 +55,7 @@ jobs:
       #     # Publish build info
       #     jf rt bp
 
-      - run: jf rt  u "build/build/*" demorepo --retries=100
+      - run: jf rt  u "build/build/*" demorepo --retries=100 --retry-wait-time=100s
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
