@@ -36,7 +36,7 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt ping --insecure-tls=true
+          jf rt ping --insecure-tls=true --retries=100
 
       - name: Build
         run: |
