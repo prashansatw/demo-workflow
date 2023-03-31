@@ -50,8 +50,7 @@ jobs:
       
       - name: Upload to target 
         run: |
-         cd deploy
-         cp artifacts/* .
+         cp -r artifacts/* deploy
          touch .nojekyll
           echo ${{ env.URL }} > CNAME
           git remote set-url origin https://github.com/prashansatw/demo-workflow-prod.git
