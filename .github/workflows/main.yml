@@ -37,7 +37,7 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jfrog rt ping --url=http://localhost:8081/artifactory
+          jfrog rt ping
 
       - name: Build
         run: |
