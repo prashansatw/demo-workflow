@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: prod
+      name: production
       url: https://${{env.URL}}
     steps:
       - name: Setup Node.js
