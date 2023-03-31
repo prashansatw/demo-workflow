@@ -29,7 +29,7 @@ jobs:
 
       - name: Setup JFrog CLI
         id: setup_JFrog_CLI
-        uses: jfrog/setup-jfrog-cli@v3
+        uses: jfrog/setup-jfrog-cli@v1
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{secrets.JF_USER}}
@@ -37,8 +37,7 @@ jobs:
 
       - run: |
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt curl http://localhost:8081
-          jf rt ping --url=http://localhost:8081/artifactory
+          jfrog rt ping --url=http://localhost:8081/artifactory
 
       - name: Build
         run: |
@@ -50,7 +49,7 @@ jobs:
       # - name: Run JFrog CLI
       #   run: |
       #     # Collect environment variables for the build
-      #     jf rt bce
+      #     jfrog rt bce
       #     # Collect VCS details from git and add them to the build
       #     jf rt bag
       #     # Publish build info
