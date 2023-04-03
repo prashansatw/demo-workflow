@@ -43,6 +43,7 @@ jobs:
           mkdir artifacts
           jf rt dl prod-repo/build/build/ artifacts
           cd ..
+          ls
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
