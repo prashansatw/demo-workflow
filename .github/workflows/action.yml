@@ -41,7 +41,7 @@ jobs:
         run: |
           cd demoApp
           mkdir artifacts
-          jf rt dl prod-repo/build/build/ artifacts
+          jf rt dl prod-repo/build/build/ artifacts/
           cd artifacts
           ls -al
           cd ..
