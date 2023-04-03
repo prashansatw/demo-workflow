@@ -42,7 +42,8 @@ jobs:
           cd demoApp
           mkdir artifacts
           jf rt dl prod-repo/build/build/ artifacts
-          ls artifacts
+          cd artifacts
+          ls -al
           cd ..
           ls
 
