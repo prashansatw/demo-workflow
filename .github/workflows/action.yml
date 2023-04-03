@@ -41,11 +41,8 @@ jobs:
         run: |
           cd demoApp
           mkdir artifacts
-          jf rt dl prod-repo/build/build/ artifacts/
-          cd artifacts
-          ls -al
+          jf rt dl prod-repo/build/build/* artifacts/
           cd ..
-          ls
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
