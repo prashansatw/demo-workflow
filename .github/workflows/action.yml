@@ -50,7 +50,7 @@ jobs:
 
       - name: Upload to target
         run: |
-          cd deploy
+          pwd
           cp -r artifacts/* deploy
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
