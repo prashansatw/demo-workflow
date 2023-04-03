@@ -1,9 +1,9 @@
-name: deploy to prod 
+name: deploy to prod
 
-on: 
+on:
   workflow_dispatch:
-    
-env: 
+
+env:
   URL: prashansatw.github.io/demo-workflow-prod/
 
 jobs:
@@ -20,11 +20,11 @@ jobs:
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      
+
       - name: Checkout Repo
         uses: actions/checkout@v3
         with:
-          path: 'artifacts'
+          path: "artifacts"
 
       - name: Setup JFrog CLI
         id: setup_JFrog_CLI
@@ -33,40 +33,28 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{secrets.JF_USER}}
           JF_PASSWORD: ${{secrets.JF_PASSWORD}}
-      
+
       - run: |
           jf rt ping --url=https://dpga.jfrog.io/artifactory
-      
+
       - name: Download Artifacts
         run: |
           jf rt dl prod-repo/build/build/
 
-      - name: Checkout Dev Target 
+      - name: Checkout Dev Target
         uses: actions/checkout@v2
         with:
           repository: prashansatw/demo-workflow-prod
           path: "deploy"
           token: ${{secrets.PAT}}
-      
-      - name: Upload to target 
+
+      - name: Upload to target
         run: |
-         cp -r artifacts/* deploy
-         touch .nojekyll
-         echo ${{ env.URL }} > CNAME
-         git remote set-url origin https://github.com/prashansatw/demo-workflow-prod.git
-         git add .
-         git commit -m $GITHUB_SHA
-         git push --set-upstream origin main
-
-        
-
-      
-        
-
-        
-
-
-  
-  
-    
-
+          cd deploy
+          cp -r artifacts/* deploy
+          touch .nojekyll
+          echo ${{ env.URL }} > CNAME
+          git remote set-url origin https://github.com/prashansatw/demo-workflow-prod.git
+          git add .
+          git commit -m $GITHUB_SHA
+          git push --set-upstream origin main
