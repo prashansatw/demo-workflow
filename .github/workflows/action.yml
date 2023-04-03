@@ -50,14 +50,12 @@ jobs:
       
       - name: Upload to target 
         run: |
-         rm -rf deploy/*
          cp -r artifacts/* deploy
          touch .nojekyll
          echo ${{ env.URL }} > CNAME
          git remote set-url origin https://github.com/prashansatw/demo-workflow-prod.git
          git add .
          git commit -m $GITHUB_SHA
-         git pull origin main
          git push --set-upstream origin main
 
         
