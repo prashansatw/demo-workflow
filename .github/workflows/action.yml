@@ -23,8 +23,6 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@v3
-        with:
-          path: "artifacts"
 
       - name: Setup JFrog CLI
         id: setup_JFrog_CLI
@@ -39,7 +37,7 @@ jobs:
 
       - name: Download Artifacts
         run: |
-          jf rt dl prod-repo/build/build/
+          jf rt dl prod-repo/build/build/ artifacts
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
@@ -50,6 +48,7 @@ jobs:
 
       - name: Upload to target
         run: |
+          rm -rf deploy/*
           cp -r artifacts/* deploy
           cd deploy
           touch .nojekyll
