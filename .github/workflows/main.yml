@@ -1,21 +1,12 @@
-name: build and deploy to test
+name: build and deploy
 on:
   workflow_dispatch:
-  push:
-    paths-ignore:
-      - ".github/workflows/**"
-env:
-  URL: prashansatw.github.io/demo-workflow-test/
+  pull request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: test
-      url: https://${{env.URL}}
     steps:
-      - run: echo ${{ secrets.DEV_ENV_SECRET }}
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
@@ -48,16 +39,20 @@ jobs:
           npm run build
           cd ..
 
-      # - name: Run JFrog CLI
-      #   run: |
-      #     # Collect environment variables for the build
-      #     jfrog rt bce
-      #     # Collect VCS details from git and add them to the build
-      #     jf rt bag
-      #     # Publish build info
-      #     jf rt bp
+  push_to_artifactory:
+    needs: build
+    runs-on: ubuntu-latest
 
-      - run: jf rt  u "build/build/*" prod-repo
+      - run: jf rt  u "build/build/*" demo-app-artifacts
+
+  deploy_to_test:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: test
+      url: https://prashansatw.github.io/demo-workflow-test/
+
+    steps:
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
