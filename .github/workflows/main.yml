@@ -85,7 +85,7 @@ jobs:
         run: |
           rm -rf deploy/*
           cp -r artifacts/* deploy
-          # cd deploy
+          cd deploy
           # cp build/index.html .
           # cp -r build/static .
           touch .nojekyll
