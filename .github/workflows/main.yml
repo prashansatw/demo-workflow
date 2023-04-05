@@ -20,6 +20,30 @@ jobs:
         with:
           path: "build"
 
+      - name: Build
+        run: |
+          cd build
+          npm i
+          npm run build
+          cd ..
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with: 
+          name: artifacts
+          path: build/build/*
+
+
+  push_to_artifactory:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifacts
+      
       - name: Setup JFrog CLI
         id: setup_JFrog_CLI
         uses: jfrog/setup-jfrog-cli@v3
@@ -32,17 +56,6 @@ jobs:
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
           jf rt ping --url=https://dpga.jfrog.io/artifactory
 
-      - name: Build
-        run: |
-          cd build
-          npm i
-          npm run build
-          cd ..
-
-  push_to_artifactory:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - run: jf rt  u "build/build/*" demo-app-artifacts
 
   deploy_to_test:
@@ -53,6 +66,12 @@ jobs:
       url: https://prashansatw.github.io/demo-workflow-test/
 
     steps:
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifacts
+
       - name: Checkout Dev Target
         uses: actions/checkout@v2
         with:
@@ -63,7 +82,7 @@ jobs:
       - name: Push files to target
         run: |
           rm -rf deploy/*
-          cp -r build/* deploy
+          cp -r build/build/* deploy
           cd deploy
           cp build/index.html .
           cp -r build/static .
