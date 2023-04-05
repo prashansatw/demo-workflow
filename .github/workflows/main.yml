@@ -104,7 +104,7 @@ jobs:
     needs: deploy_to_test
     runs-on: ubuntu-latest
     environment:
-      name: prod
+      name: production
       url: https://prashansatw.github.io/demo-workflow-prod/
     steps:
 
