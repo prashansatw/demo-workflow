@@ -67,6 +67,11 @@ jobs:
       url: https://prashansatw.github.io/demo-workflow-test/
 
     steps:
+      
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
 
       - name: Download Artifacts
         uses: actions/download-artifact@v3
@@ -94,3 +99,43 @@ jobs:
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
+
+  deploy_to_prod:
+    needs: deploy_to_test
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: https://prashansatw.github.io/demo-workflow-prod/
+    steps:
+
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with: 
+          name: artifacts
+          path: artifacts/
+      
+      - name: Checkout Dev Target
+        uses: actions/checkout@v2
+        with:
+          repository: prashansatw/demo-workflow-prod
+          path: "deploy"
+          token: ${{secrets.PAT}}
+      
+      - name: Push to prod
+        run: |
+          rm -rf deploy/*
+          cp -r artifacts/* deploy/
+          cd deploy
+          touch .nojekyll
+          echo ${{ env.URL }} > CNAME
+          git remote set-url origin https://github.com/prashansatw/demo-workflow-prod.git
+          git add .
+          git commit -m $GITHUB_SHA
+          git push --set-upstream origin main
+
+    
