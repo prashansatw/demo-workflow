@@ -43,6 +43,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: artifacts
+          path: artifacts/
       
       - name: Setup JFrog CLI
         id: setup_JFrog_CLI
@@ -56,7 +57,7 @@ jobs:
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
           jf rt ping --url=https://dpga.jfrog.io/artifactory
 
-      - run: jf rt  u "build/build/*" demo-app-artifacts
+      - run: jf rt  u "artifacts/*" demo-app-artifacts
 
   deploy_to_test:
     needs: build
@@ -71,6 +72,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: artifacts
+          path: artifacts/
 
       - name: Checkout Dev Target
         uses: actions/checkout@v2
@@ -82,10 +84,10 @@ jobs:
       - name: Push files to target
         run: |
           rm -rf deploy/*
-          cp -r build/build/* deploy
-          cd deploy
-          cp build/index.html .
-          cp -r build/static .
+          cp -r artifacts/* deploy
+          # cd deploy
+          # cp build/index.html .
+          # cp -r build/static .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
           git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
