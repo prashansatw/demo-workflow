@@ -57,7 +57,7 @@ jobs:
           echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
           jf rt ping --url=https://dpga.jfrog.io/artifactory
 
-      - run: jf rt  u "artifacts/*" demo-app-artifacts
+      - run: jf rt  u "artifacts/*" demo-app-artifacts/${{ github.run_number}}
 
   deploy_to_test:
     needs: build
