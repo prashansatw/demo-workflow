@@ -9,55 +9,83 @@ jobs:
     steps:
       - name: Setup Node.js
         uses: actions/setup-node@v3
+      
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          path: "build"
+
+      - run: |
+        git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
+        ./src/scripts/static.bash 
+        git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
+        
+        cd ../pg-scripts 
+        npm install 
+        
+        cd packages/automation 
+        node consolidate_data.js 
+        cd ..
+        cd packages/automation 
+        node index.js 
+        cd .. 
+        cd packages/registry 
+        npm run build
+        cd .. 
+        cd packages/eligibility 
+        npm run build 
+        cd .. 
+        cd packages/roadmap 
+        npm run build 
+        cd .. 
+        ./scripts/moveFiles.bash 
+        cd .. 
 
       - name: Set GitHub Actions as Commit Author
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-        with:
-          path: "build"
-
-      - name: Build
-        run: |
-          cd build
-          npm i
-          npm run build
-          cd ..
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with: 
-          name: artifacts
-          path: build/build/*
-
-
-  push_to_artifactory:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with: 
-          name: artifacts
-          path: artifacts${{ github.run_number}}/
+
+      # - name: Build
+      #   run: |
+      #     cd build
+      #     npm i
+      #     npm run build
+      #     cd ..
+
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with: 
+      #     name: artifacts
+      #     path: build/build/*
+
+
+  # push_to_artifactory:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
       
-      - name: Setup JFrog CLI
-        id: setup_JFrog_CLI
-        uses: jfrog/setup-jfrog-cli@v3
-        env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_USER: ${{secrets.JF_USER}}
-          JF_PASSWORD: ${{secrets.JF_PASSWORD}}
+  #     - name: Download Artifacts
+  #       uses: actions/download-artifact@v3
+  #       with: 
+  #         name: artifacts
+  #         path: artifacts${{ github.run_number}}/
+      
+  #     - name: Setup JFrog CLI
+  #       id: setup_JFrog_CLI
+  #       uses: jfrog/setup-jfrog-cli@v3
+  #       env:
+  #         JF_URL: ${{ secrets.JF_URL }}
+  #         JF_USER: ${{secrets.JF_USER}}
+  #         JF_PASSWORD: ${{secrets.JF_PASSWORD}}
 
-      - run: |
-          echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
-          jf rt ping --url=https://dpga.jfrog.io/artifactory
+  #     - run: |
+  #         echo  ${{steps.setup_JFrog_CLI.env.JF_URL}}
+  #         jf rt ping --url=https://dpga.jfrog.io/artifactory
 
-      - run: jf rt  u "artifacts${{ github.run_number}}/*" demo-app-artifacts
+  #     - run: jf rt  u "artifacts${{ github.run_number}}/*" demo-app-artifacts
 
   deploy_to_test:
     needs: build
@@ -76,7 +104,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with: 
-          name: artifacts${{ github.run_number}}
+          name: artifacts
           path: artifacts/
 
       - name: Checkout Dev Target
