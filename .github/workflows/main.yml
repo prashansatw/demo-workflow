@@ -37,9 +37,9 @@ jobs:
           cd .. 
           cd packages/roadmap 
           npm run build 
-          cd ..
-          ./src/scripts/moveFiles.bash
-          
+          cd .. 
+          ./scripts/moveFiles.bash 
+          cd .. 
 
       - name: Set GitHub Actions as Commit Author
         run: |
