@@ -16,18 +16,21 @@ jobs:
           path: "build"
 
       - run: |
-          git clone https://github.com/prashansatw/demo-workflow-test.git  build/pg-website
+          git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
           build/src/scripts/static.bash 
-          git clone https://github.com/DPGAlliance/publicgoods-scripts.git build/pg-scripts 
+          git clone https://github.com/DPGAlliance/publicgoods-scripts.git /pg-scripts 
         
-          cd build/pg-scripts 
+          cd ../pg-scripts 
           npm install 
         
           cd packages/automation 
           node consolidate_data.js  
-          node index.js 
           cd .. 
-          cd registry 
+          cd ..
+          cd ..
+          node build/src/index.js
+          cd ../pg-scripts
+          cd packages/registry 
           npm run build
           cd .. 
           cd eligibility 
