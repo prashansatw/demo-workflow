@@ -18,8 +18,8 @@ jobs:
       - run: |
           git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
           build/src/scripts/static.bash 
-          node build/src/index.js
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
+          node ../src/index.js
         
           cd ../pg-scripts 
           npm install 
