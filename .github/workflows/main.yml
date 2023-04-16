@@ -27,8 +27,6 @@ jobs:
           node consolidate_data.js  
           cd .. 
           cd ..
-          cd ..
-          cd ..
           cd ../pg-scripts
           cd packages/registry 
           npm run build
