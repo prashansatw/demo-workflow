@@ -28,7 +28,8 @@ jobs:
           cd .. 
           cd ..
           cd ..
-          cd /pg-scripts
+          cd ..
+          cd ../pg-scripts
           cd packages/registry 
           npm run build
           cd .. 
