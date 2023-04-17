@@ -26,13 +26,13 @@ jobs:
           cd packages/automation 
           node consolidate_data.js  
           cd .. 
-          cd packages/registry 
+          cd registry 
           npm run build
           cd .. 
-          cd packages/eligibility 
+          cd eligibility 
           npm run build 
           cd .. 
-          cd packages/roadmap 
+          cd roadmap 
           npm run build 
           cd ..
           ./src/scripts/moveFiles.bash 
