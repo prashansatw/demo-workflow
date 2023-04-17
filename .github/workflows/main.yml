@@ -28,7 +28,7 @@ jobs:
           cd .. 
           cd ..
           cd ..
-          node build/src/index.js
+          node ../src/index.js
           cd ../pg-scripts
           cd packages/registry 
           npm run build
