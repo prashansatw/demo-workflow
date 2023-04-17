@@ -21,7 +21,7 @@ jobs:
 
       - run: |
           ls
-          src/scripts/static.bash
+          workflow-demo/src/scripts/static.bash
           
       - run: |
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
