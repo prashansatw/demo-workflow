@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 // const fspromise = require("fs/promises");
 let dpgs = [];
 try {
-  dpgs = JSON.parse(fs.readFileSync("../../pg-scripts/packages/registry/src/nominees.json", "utf8"));
+  dpgs = JSON.parse(fs.readFileSync("../pg-scripts/packages/registry/src/nominees.json", "utf8"));
 } catch (err) {
   console.error(err);
 }
@@ -54,14 +54,14 @@ const sdgColors = [
 ];
 
 // path = "../publicgoods-candidates/nominees";
-pathHtml = "../../pg-website/registry/index.html";
-destHtml = "../../pg-scripts/registry/public/index.html";
-pathFormHtml = "../../pg-website/eligibility/index.html";
-destFormHtml = "../../pg-scripts/eligibility/public/index.html";
+pathHtml = "../pg-website/registry/index.html";
+destHtml = "../pg-scripts/registry/public/index.html";
+pathFormHtml = "../pg-website/eligibility/index.html";
+destFormHtml = "../pg-scripts/eligibility/public/index.html";
 // pathMapHtml = "../pg-website/map/index.html";
 // destMapHtml = "../map/public/";
-pathRoadmapHtml = "../../pg-website/roadmap/index.html";
-destRoadmapHtml = "../../pg-scripts/roadmap/public/index.html";
+pathRoadmapHtml = "../pg-website/roadmap/index.html";
+destRoadmapHtml = "../pg-scripts/roadmap/public/index.html";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

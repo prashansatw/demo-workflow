@@ -22,10 +22,14 @@ jobs:
           git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
 
       - run: |
-          cd ../pg-website
+          git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
+          
+
+      - run: |
+          
           pwd
           ls
-          rm -rf pg-website/*
+          rm -rf ../pg-website/*
           ls
 
       - run: |
@@ -35,9 +39,7 @@ jobs:
           cd ../pg-website
           ls
           
-      - run: |
-          git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
-          
+      
       - run: |
           cd ../pg-scripts 
           pwd
