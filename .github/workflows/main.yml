@@ -28,7 +28,8 @@ jobs:
           cd .. 
           cd ..
           cd ..
-          node build/src/scripts/index.js
+          cd ..
+          node /src/scripts/index.js
           cd registry 
           npm run build
           cd .. 
