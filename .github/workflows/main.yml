@@ -13,36 +13,41 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
         with:
-          path: "build"
+          path: "workflow-demo"
 
       - run: |
+          pwd
           git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
-          build/src/scripts/static.bash 
+
+      - run: |
+          ls
+          src/scripts/static.bash
+          
+      - run: |
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
-        
+          
+      - run: |
           cd ../pg-scripts 
           npm install 
-        
           cd packages/automation 
           node consolidate_data.js  
-          cd .. 
-          cd ..
-          cd ..
-          pwd
+          
+      - run: |  
+          pwd 
           node src/index.js
-          cd packages/registry 
-          npm run build
-          cd .. 
-          cd eligibility 
-          npm run build 
-          cd .. 
-          cd roadmap 
-          npm run build 
-          cd ..
-          cd ..
-          cd .. 
-          ./src/scripts/moveFiles.bash 
-          cd .. 
+          # cd packages/registry 
+          # npm run build
+          # cd .. 
+          # cd eligibility 
+          # npm run build 
+          # cd .. 
+          # cd roadmap 
+          # npm run build 
+          # cd ..
+          # cd ..
+          # cd .. 
+          # ./src/scripts/moveFiles.bash 
+          # cd .. 
 
       - name: Set GitHub Actions as Commit Author
         run: |
