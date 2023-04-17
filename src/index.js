@@ -56,13 +56,13 @@ const sdgColors = [
 
 //path = "../publicgoods-candidates/nominees";
 pathHtml = "../pg-website/registry/index.html";
-destHtml = "../pg-scripts/registry/public/index.html";
+destHtml = "../pg-scripts/packages/registry/public/index.html";
 pathFormHtml = "../pg-website/eligibility/index.html";
-destFormHtml = "../pg-scripts/eligibility/public/index.html";
+destFormHtml = "../pg-scripts/packages/eligibility/public/index.html";
 // pathMapHtml = "../pg-website/map/index.html";
 // destMapHtml = "../map/public/";
 pathRoadmapHtml = "../pg-website/roadmap/index.html";
-destRoadmapHtml = "../pg-scripts/roadmap/public/index.html";
+destRoadmapHtml = "../pg-scripts/packages/roadmap/public/index.html";
 
 
 // pathHtml = "../../pg-website/registry/index.html";
