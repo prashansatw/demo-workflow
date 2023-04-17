@@ -15,7 +15,7 @@ jobs:
         with:
           path: "workflow-demo"
 
-      - run: cd workflow-demo && npm i    
+      - run: cd workflow-demo && rm -rf node_modules && npm i    
 
       - run: |
           pwd
@@ -43,6 +43,7 @@ jobs:
       - run: |
           cd ../pg-scripts 
           pwd
+          rm -rf node modules
           npm install 
           cd packages/automation 
           node consolidate_data.js  
