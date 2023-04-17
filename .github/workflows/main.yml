@@ -34,7 +34,7 @@ jobs:
           
       - run: |  
           pwd 
-          node src/index.js
+          node workflow-demo/src/index.js
           # cd packages/registry 
           # npm run build
           # cd .. 
