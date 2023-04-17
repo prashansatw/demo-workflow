@@ -28,6 +28,7 @@ jobs:
           cd .. 
           cd ..
           cd ..
+          cd ..
           node demo-workflow/src/index.js
           cd ../pg-scripts
           cd packages/registry 
