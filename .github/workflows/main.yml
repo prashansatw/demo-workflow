@@ -22,6 +22,13 @@ jobs:
           git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
 
       - run: |
+          cd ../pg-website
+          pwd
+          ls
+          rm -rf pg-website/*
+          ls
+
+      - run: |
           ls
           workflow-demo/src/scripts/static.bash
           
@@ -30,6 +37,7 @@ jobs:
           
       - run: |
           cd ../pg-scripts 
+          pwd
           npm install 
           cd packages/automation 
           node consolidate_data.js  

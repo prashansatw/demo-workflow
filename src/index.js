@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 // const fspromise = require("fs/promises");
 let dpgs = [];
 try {
-  dpgs = JSON.parse(fs.readFileSync("../../pg-scripts/registry/src/nominees.json", "utf8"));
+  dpgs = JSON.parse(fs.readFileSync("../../pg-scripts/packages/registry/src/nominees.json", "utf8"));
 } catch (err) {
   console.error(err);
 }
