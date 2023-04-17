@@ -26,12 +26,7 @@ jobs:
           cd packages/automation 
           node consolidate_data.js  
           cd .. 
-          cd ..
-          cd ..
-          cd ..
-          node demo-workflow/src/index.js
-          cd ../pg-scripts
-          cd packages/registry 
+          cd registry 
           npm run build
           cd .. 
           cd eligibility 
