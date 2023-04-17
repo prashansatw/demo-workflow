@@ -26,6 +26,9 @@ jobs:
           cd packages/automation 
           node consolidate_data.js  
           cd .. 
+          cd ..
+          cd ..
+          node build/src/index.js
           cd registry 
           npm run build
           cd .. 
