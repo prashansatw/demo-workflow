@@ -1,5 +1,5 @@
 const fs = require("fs");
-const glob = require("glob");
+//const glob = require("glob");
 const replace = require("replace-in-file");
 const cheerio = require("cheerio");
 // const fetch = require("node-fetch");
@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
 // const fspromise = require("fs/promises");
 let dpgs = [];
 try {
-  dpgs = JSON.parse(fs.readFileSync("../pg-scripts/registry/src/nominees.json", "utf8"));
+  dpgs = JSON.parse(fs.readFileSync("../../pg-scripts/registry/src/nominees.json", "utf8"));
 } catch (err) {
   console.error(err);
 }
@@ -54,14 +54,14 @@ const sdgColors = [
 ];
 
 // path = "../publicgoods-candidates/nominees";
-pathHtml = "../pg-website/registry/index.html";
-destHtml = "../pg-scripts/registry/public/index.html";
-pathFormHtml = "../pg-website/eligibility/index.html";
-destFormHtml = "../pg-scripts/eligibility/public/index.html";
+pathHtml = "../../pg-website/registry/index.html";
+destHtml = "../../pg-scripts/registry/public/index.html";
+pathFormHtml = "../../pg-website/eligibility/index.html";
+destFormHtml = "../../pg-scripts/eligibility/public/index.html";
 // pathMapHtml = "../pg-website/map/index.html";
 // destMapHtml = "../map/public/";
-pathRoadmapHtml = "../pg-website/roadmap/index.html";
-destRoadmapHtml = "../pg-scripts/roadmap/public/index.html";
+pathRoadmapHtml = "../../pg-website/roadmap/index.html";
+destRoadmapHtml = "../../pg-scripts/roadmap/public/index.html";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -607,21 +607,21 @@ replace(
   }
 );
 
-fs.readFile(pathMapHtml, "utf8", function (err, html) {
-  if (err) {
-    return console.error("Error occurred:", err);
-  }
-  let $ = cheerio.load(html);
-  $("main").remove(); // removes element where map will be placed
-  fs.writeFileSync(destMapHtml + "head.html", $("head").html());
-  fs.writeFileSync(destMapHtml + "footer.html", $("footer").html());
-  fs.writeFileSync(
-    destMapHtml + "scripts.html",
-    $.html($("#dpga-libs-js")) + $.html($("#dpga-main-js"))
-  ); // finds specific dpga scripts.
-  fs.writeFileSync(destMapHtml + "navbar.html", $("#page").html());
-  fs.writeFileSync(
-    destMapHtml + "templateClassName.txt",
-    $("body").attr("class")
-  );
-});
+// fs.readFile(pathMapHtml, "utf8", function (err, html) {
+//   if (err) {
+//     return console.error("Error occurred:", err);
+//   }
+//   let $ = cheerio.load(html);
+//   $("main").remove(); // removes element where map will be placed
+//   fs.writeFileSync(destMapHtml + "head.html", $("head").html());
+//   fs.writeFileSync(destMapHtml + "footer.html", $("footer").html());
+//   fs.writeFileSync(
+//     destMapHtml + "scripts.html",
+//     $.html($("#dpga-libs-js")) + $.html($("#dpga-main-js"))
+//   ); // finds specific dpga scripts.
+//   fs.writeFileSync(destMapHtml + "navbar.html", $("#page").html());
+//   fs.writeFileSync(
+//     destMapHtml + "templateClassName.txt",
+//     $("body").attr("class")
+//   );
+// });
