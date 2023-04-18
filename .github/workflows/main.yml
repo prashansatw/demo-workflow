@@ -66,7 +66,7 @@ jobs:
           cd ../pg-scripts/packages/roadmap
           npm i && npm run build
 
-      - run: workflow-dem0/src/scripts/moveFiles.bash
+      - run: workflow-demo/src/scripts/moveFiles.bash
 
           # cd packages/registry 
           # npm run build
