@@ -54,15 +54,15 @@ jobs:
 
       - run: |
           cd ../pg-scripts/packages/registry
-          npm run build
+          npm i && npm run build
       
       - run: |
           cd ../pg-scripts/packages/eligibility
-          npm run build
+          npm i && npm run build
       
       - run: |
           cd ../pg-scripts/packages/roadmap
-          npm run build
+          npm i && npm run build
 
       - run: workflow-dem0/src/scripts/moveFiles.bash
 
