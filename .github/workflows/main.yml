@@ -51,6 +51,21 @@ jobs:
       - run: |  
           pwd 
           node workflow-demo/src/index.js
+
+      - run: |
+          cd ../pg-scripts/packages/registry
+          npm run build
+      
+      - run: |
+          cd ../pg-scripts/packages/eligibility
+          npm run build
+      
+      - run: |
+          cd ../pg-scripts/packages/roadmap
+          npm run build
+
+      - run: workflow-dem0/src/scripts/moveFiles.bash
+
           # cd packages/registry 
           # npm run build
           # cd .. 
@@ -81,7 +96,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: artifacts
-          path: build/pg-website/*
+          path: ../pg-website/*
 
 
   # push_to_artifactory:
