@@ -56,12 +56,13 @@ jobs:
           node workflow-demo/src/index.js
 
       - run: |
-          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/eligibility/public/wp-includes;
-          ln -s ../pg-website/wp-content/ ../pg-scripts/packages/eligibility/public/wp-content;
-          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/registry/public/wp-includes;
-          ln -s ../pg-website/wp-content/ ../pg-scripts/packages/registry/public/wp-content;
-          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/roadmap/public/wp-includes;
-          ln -s ../pg-website/wp-content/ ../pg-scripts/packages/roadmap/public/wp-content;
+          cd ../pg-scripts/packages
+          ln -s ../pg-website/wp-includes/ eligibility/public/wp-includes;
+          ln -s ../pg-website/wp-content/ eligibility/public/wp-content;
+          ln -s ../pg-website/wp-includes/ registry/public/wp-includes;
+          ln -s ../pg-website/wp-content/ registry/public/wp-content;
+          ln -s ../pg-website/wp-includes/ roadmap/public/wp-includes;
+          ln -s ../pg-website/wp-content/ roadmap/public/wp-content;
 
       - run: |
           cd ../pg-scripts/packages/registry
