@@ -32,6 +32,7 @@ jobs:
           pwd
           ls
           rm -rf ../pg-website/*
+          cd ../pg-website
           ls
 
       - run: |
@@ -98,7 +99,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: artifacts
-          path: "home/runner/work/demo-workflow/pg-website/*"
+          path: "/home/runner/work/demo-workflow/pg-website/*"
 
 
   # push_to_artifactory:
