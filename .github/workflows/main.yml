@@ -56,6 +56,14 @@ jobs:
           node workflow-demo/src/index.js
 
       - run: |
+          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/eligibility/public/wp-includes;
+          ln -s ../pg-website/wp-content/ ../pg-scripts/ackages/eligibility/public/wp-content;
+          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/registry/public/wp-includes;
+          ln -s ../pg-website/wp-content/ ../pg-scripts/ackages/registry/public/wp-content;
+          ln -s ../pg-website/wp-includes/ ../pg-scripts/packages/roadmap/public/wp-includes;
+          ln -s ../pg-website/wp-content/ ../pg-scripts/ackages/roadmap/public/wp-content;
+
+      - run: |
           cd ../pg-scripts/packages/registry
           npm i && npm run build
       
