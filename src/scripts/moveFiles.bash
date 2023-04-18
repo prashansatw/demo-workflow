@@ -26,7 +26,7 @@ pushd ../pg-website/roadmap && \
     cp ../../pg-scripts/packages/roadmap/build/index.html . && \
 popd
 
-pushd ../pg-website/community && \
-    cp -a ../../pg-scripts/packages/community/* . && \
+# pushd ../pg-website/community && \
+#     cp -a ../../pg-scripts/packages/community/* . && \
     
-popd
+# popd
