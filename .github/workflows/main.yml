@@ -21,7 +21,7 @@ jobs:
 
       - run: |
           pwd
-          git clone https://github.com/prashansatw/demo-workflow-test.git  ../pg-website
+          git clone https://github.com/prashansatw/prashansatw.github.io.git ../pg-website
 
       - run: |
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
@@ -55,14 +55,14 @@ jobs:
           pwd 
           node workflow-demo/src/index.js
 
-      - run: |
-          cd ../pg-scripts/packages
-          ln -s ../../../pg-website/wp-includes/ eligibility/public/wp-includes;
-          ln -s ../../../pg-website/wp-content/ eligibility/public/wp-content;
-          ln -s ../../../pg-website/wp-includes/ registry/public/wp-includes;
-          ln -s ../../../pg-website/wp-content/ registry/public/wp-content;
-          ln -s ../../../pg-website/wp-includes/ roadmap/public/wp-includes;
-          ln -s ../../../pg-website/wp-content/ roadmap/public/wp-content;
+      # - run: |
+      #     cd ../pg-scripts/packages
+      #     ln -s ../../../pg-website/wp-includes/ eligibility/public/wp-includes;
+      #     ln -s ../../../pg-website/wp-content/ eligibility/public/wp-content;
+      #     ln -s ../../../pg-website/wp-includes/ registry/public/wp-includes;
+      #     ln -s ../../../pg-website/wp-content/ registry/public/wp-content;
+      #     ln -s ../../../pg-website/wp-includes/ roadmap/public/wp-includes;
+      #     ln -s ../../../pg-website/wp-content/ roadmap/public/wp-content;
 
       - run: |
           cd ../pg-scripts/packages/registry
@@ -141,7 +141,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: test
-      url: https://prashansatw.github.io/demo-workflow-test/
+      url: https://prashansatw.github.io/
 
     steps:
       
@@ -172,7 +172,7 @@ jobs:
           # cp -r build/static .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
-          git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
+          git remote set-url origin https://github.com/prashansatw/prashansatw.github.io.git
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main

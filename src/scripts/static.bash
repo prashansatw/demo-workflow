@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOMAIN="https://prashansatw.github.io/demo-workflow-test/"
+DOMAIN="https://prashansatw.github.io/"
 
 # source a static version of the site
 wget --no-host-directories --recursive --page-requisites --no-parent --timestamping -e robots=off -w 1 --random-wait --retry-on-http-error=503 -P static http://dpgwebsite.herokuapp.com http://dpgwebsite.herokuapp.com/submission-guide/
