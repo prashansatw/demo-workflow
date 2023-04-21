@@ -21,7 +21,7 @@ jobs:
 
       - run: |
           pwd
-          git clone https://github.com/prashansatw/prashansatw.github.io.git ../pg-website
+          git clone https://github.com/prashansatw/demo-workflow-test.git ../pg-website
 
       - run: |
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
@@ -141,7 +141,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: test
-      url: https://prashansatw.github.io/
+      url: https://prashansatw.github.io/demo-workflow-test/
 
     steps:
       
@@ -172,7 +172,7 @@ jobs:
           # cp -r build/static .
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
-          git remote set-url origin https://github.com/prashansatw/prashansatw.github.io.git
+          git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
           git add .
           git commit -m $GITHUB_SHA
           git push --set-upstream origin main
