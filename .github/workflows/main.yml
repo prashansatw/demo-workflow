@@ -173,9 +173,10 @@ jobs:
           touch .nojekyll
           echo ${{ env.URL }} > CNAME
           git remote set-url origin https://github.com/prashansatw/demo-workflow-test.git
+          git checkout -b gh-pages
           git add .
           git commit -m $GITHUB_SHA
-          git push --set-upstream origin main
+          git push --set-upstream origin gh-pages
 
   deploy_to_prod:
     needs: deploy_to_test
