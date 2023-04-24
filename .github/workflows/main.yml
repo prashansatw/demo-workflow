@@ -21,7 +21,7 @@ jobs:
 
       - run: |
           pwd
-          git clone https://github.com/prashansatw/demo-workflow-test.git ../pg-website
+          git clone https://${secrets.PAT}@github.com/prashansatw/demo-workflow-test.git ../pg-website
 
       - run: |
           git clone https://github.com/DPGAlliance/publicgoods-scripts.git ../pg-scripts 
